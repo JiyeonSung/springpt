@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jayymall.mappers.MemberMapper">
+
+	<!-- MemberVO 가져오기 -->
+	<select id="readUserInfo" parameterType="string" resultType="MemberVO">
+		select  mem_id, mem_name, mem_pw, mem_email, mem_accept_e, mem_tel, mem_zipcode, mem_basicadd, mem_detailadd,
+		mem_nickname, mem_point, mem_joindate, mem_update, mem_lastlogin, mem_authcode
+		from member_tbl
+		where mem_id = #{mem_id}
+	</select> 
+
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="MemberVO">
+		insert into member_tbl(MEM_ID, MEM_NAME, MEM_PW, MEM_EMAIL, MEM_ZIPCODE,
+			MEM_BASICADD, MEM_DETAILADD, MEM_TEL, MEM_NICKNAME, MEM_ACCEPT_E)
+		values(#{mem_id}, #{mem_name}, #{mem_pw}, #{mem_email}, #{mem_zipcode},
+			#{mem_basicadd}, #{mem_detailadd}, #{mem_tel}, #{mem_nickname}, #{mem_accept_e})
+	</insert>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="checkIdDuplicate" parameterType="string" resultType="int">
+		select count(*)
+		from member_tbl
+		where mem_id = #{mem_id}
+	</select>
+	
+	
+</mapper>
