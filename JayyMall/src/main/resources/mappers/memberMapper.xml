@@ -28,5 +28,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_id = #{mem_id}
 	</select>
 	
+	<!-- 로그인 -->
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		select mem_id, mem_pw, mem_nickname, mem_name, mem_point, mem_lastlogin
+		from member_tbl
+		where mem_id = #{mem_id}
+	</select>
 	
+	<!-- 로그인 시간 업데이트 -->
+	<update id="loginUpdate" parameterType="string">
+		update member_tbl
+		set mem_lastlogin = sysdate
+		where mem_id = #{mem_id}	
+	</update>
+	
+	<!-- 로그인 정보 쿠키 저장 -->
+	<update id="saveCookie" parameterType="Map">
+		update member_tbl
+		set mem_session_key = #{mem_session_key},
+			mem_session_limit = #{mem_session_limit}
+		where mem_id = #{mem_id}
+	</update>
+	
+	<!-- 쿠키에 저장된 세션값으로 로그인 정보 가져오기 -->
+	<select id="checkUserSession" parameterType="string" resultType="MemberVO">
+		select *
+		from member_tbl
+		where mem_session_key = #{value} and mem_session_limit > now()
+	</select>
+		
 </mapper>
