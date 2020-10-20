@@ -1,193 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
 
+<html class="no-js" lang="zxx">
 <head>
-<script>
-	if("${msg}"=="LOGIN_SUCCESS"){
-		alert("로그인 되었습니다.\n환영합니다!");
-		
-	} else if("${msg}"=="LOGOUT_SUCCESS"){
-		alert("로그아웃 되었습니다.");
-		
-	} else if("${msg}"=="REGISTER_SUCCESS"){
-		alert("성공적으로 회원가입 되었습니다.\n로그인 해주세요.");
-		
-	} else if("${msg}"=="MODIFY_USER_SUCCESS"){
-		alert("회원 정보가 수정되었습니다.");
-		
-	} else if("${msg}"=="CHANGE_PW_SUCCESS"){
-		alert("비밀번호가 성공적으로 변경되었습니다.");
-		1
-	}  else if("${msg}"=="DELETE_USER_SUCCESS"){
-		alert("회원 탈퇴되었습니다. 감사합니다.");
-		
-	} 
-</script>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JayyMall | Template</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-  <title>Shop Homepage - Start Bootstrap Template</title>
-
-	<!-- Bootstrap core JavaScript -->
-	<%@ include file="/WEB-INF/views/common/bootjs.jsp" %>
-	
-	<script type="text/javascript">
-		$(function(){
-			
-		});
-	</script>
-
-  <!-- Bootstrap core CSS -->
-  <!-- Custom styles for this template -->
-<%@ include file="/WEB-INF/views/common/bootcss.jsp" %>
-  
-
+    <!-- CSS here -->
+    <%@ include file="/WEB-INF/views/common/bootcss.jsp" %>
+    
 </head>
-
 <body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-  <!-- Navigation -->
-  <%@ include file="/WEB-INF/views/common/top.jsp" %>
+<!-- Offcanvas Menu Begin -->
+<%@ include file="/WEB-INF/views/common/offcanvas.jsp" %>
+<!-- Offcanvas Menu End -->
 
-  <!-- Page Content -->
-  <div class="container">
+<!-- Header Section Begin -->
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!-- Header Section End -->
 
-    <div class="row">
+<!-- Hero Section Begin -->
+<%@ include file="/WEB-INF/views/common/hero.jsp" %>
+<!-- Hero Section End -->
 
-	  <!-- 카테고리 메뉴 -->
-      <div class="col-lg-3">
+<!-- Banner Section Begin -->
+<%@ include file="/WEB-INF/views/common/banner.jsp" %>
+<!-- Banner Section End -->
 
-        <%@ include file="/WEB-INF/views/common/category.jsp" %>
+<!-- Product Section Begin -->
+<%@ include file="/WEB-INF/views/common/product.jsp" %>
+<!-- Product Section End -->
 
-      </div>
-      <!-- /.col-lg-3 -->
+<!-- Categories Section Begin -->
+<%@ include file="/WEB-INF/views/common/categories.jsp" %>
+<!-- Categories Section End -->
 
-      <div class="col-lg-9">
-		<!-- main-carousel begin  -->
-        <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
-		<!-- main-carousel end -->
-		
-		
-        <div class="row">
+<!-- Instagram Section Begin -->
+<%@ include file="/WEB-INF/views/common/instagram.jsp" %>
+<!-- Instagram Section End -->
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item One</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
+<!-- Latest Blog Section Begin -->
+<%@ include file="/WEB-INF/views/common/blog.jsp" %>
+<!-- Latest Blog Section End -->
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Two</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
+<!-- Footer Section Begin -->
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<!-- Footer Section End -->
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Three</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
+<!-- Search Begin -->
+<%@ include file="/WEB-INF/views/common/search.jsp" %>
+<!-- Search End -->
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Four</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Five</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Six</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- /.row -->
-
-      </div>
-      <!-- /.col-lg-9 -->
-
-    </div>
-    <!-- /.row -->
-
-  </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <%@ include file="/WEB-INF/views/common/bottom.jsp" %>
+<!-- Js Plugins -->
+<script src="/resources/js/js/jquery-3.3.1.min.js"></script>
+<script src="/resources/js/js/bootstrap.min.js"></script>
+<script src="/resources/js/js/jquery.nice-select.min.js"></script>
+<script src="/resources/js/js/jquery.nicescroll.min.js"></script>
+<script src="/resources/js/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/js/js/jquery.countdown.min.js"></script>
+<script src="/resources/js/js/jquery.slicknav.js"></script>
+<script src="/resources/js/js/mixitup.min.js"></script>
+<script src="/resources/js/js/owl.carousel.min.js"></script>
+<script src="/resources/js/js/main.js"></script>
 
 </body>
-
 </html>
-

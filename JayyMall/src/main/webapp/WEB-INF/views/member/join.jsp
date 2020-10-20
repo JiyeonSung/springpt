@@ -1,62 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
+
+<!-- Offcanvas Menu Begin -->
+<%@ include file="/WEB-INF/views/common/offcanvas.jsp" %>
+<!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!-- Header Section End -->
+
 <html lang="en">
 
 <head>
+<title>JayyMall | Template - MEMBER JOIN</title>
+<!-- 회원가입 유효성 검사 -->
+<script type="text/javascript" src="/resources/js/member/join.js"></script>
+	
+	<meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JayyMall | Template</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-  <title>Shop Homepage - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <!-- Bootstrap core JavaScript -->
-  <%@ include file="/WEB-INF/views/common/bootjs.jsp" %>
+    <!-- Css Styles -->
+    <%@ include file="/WEB-INF/views/common/bootcss.jsp" %>
   
-  <!-- 회원가입 유효성 검사 -->
-  <script src="/js/join.js"></script>
-  
-  <!-- Custom styles for this template -->
-<%@ include file="/WEB-INF/views/common/bootcss.jsp" %>
-  
-
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <%@ include file="/WEB-INF/views/common/top.jsp" %>
+	<!-- Page Preloder -->
+	<div id="preloder">
+	    <div class="loader"></div>
+	</div>
 
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-	  <!-- 카테고리 메뉴 -->
-      <div class="col-lg-3">
-
-        <%@ include file="/WEB-INF/views/common/category.jsp" %>
-
-      </div>
-      <!-- /.col-lg-3 -->
-
-      <div class="col-lg-9">
-		<!-- main-carousel begin  -->
-        <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
-		<!-- main-carousel end -->
+  <!-- Join Section Begin -->
+    <!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="fa fa-dashboard"></i>Main</a></li>
+					<li>Join</li>
+				</ol>
+			</section>
 		
-		
-        <div class="row">
-		
-		<!-- 회원가입 -->
-          
-        <div class="col">
-    <h2>회원가입</h2>
-    <form id="JoinForm" method="post">
-        
+<%-- Main content 회원가입 UI --%>
+<div class="col">
+    <h2>회원가입</h2>        
 		<div class="container" style="width: 70%; min-width: 900px; background-color: white; font-size: 14px;" >
 			<form id="joinForm" action="/member/join" method="post">
 				<div class="container" style="padding: 5%;">
@@ -68,7 +67,7 @@
 							placeholder="아이디를 입력해 주세요"
 							style="max-width:540px; width:calc(100% - 100px); margin-right: 5px; display: inline-block;">
 						<button id="btn_checkId" class="btn btn-default" type="button">중복 확인</button>
-						<p id="id_availability" styl=e"color: red;"></p>
+						<p id="id_availability" style="color: red;"></p>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword">* 비밀번호</label> <input type="password"
@@ -243,24 +242,27 @@
     </div>
      
     </div>
-    </div>
-          
-		<!-- 회원가입 -->
-        </div>
-        <!-- /.row -->
+         
 
-      </div>
-      <!-- /.col-lg-9 -->
+    <!-- Footer Section Begin -->
+    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    <!-- Footer Section End -->
 
-    </div>
-    <!-- /.row -->
+    <!-- Search Begin -->
+    <%@ include file="/WEB-INF/views/common/search.jsp" %>
+    <!-- Search End -->
 
-  </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <%@ include file="/WEB-INF/views/common/bottom.jsp" %>
-
+<!-- Js Plugins -->
+<script src="/resources/js/js/jquery-3.3.1.min.js"></script>
+<script src="/resources/js/js/bootstrap.min.js"></script>
+<script src="/resources/js/js/jquery.nice-select.min.js"></script>
+<script src="/resources/js/js/jquery.nicescroll.min.js"></script>
+<script src="/resources/js/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/js/js/jquery.countdown.min.js"></script>
+<script src="/resources/js/js/jquery.slicknav.js"></script>
+<script src="/resources/js/js/mixitup.min.js"></script>
+<script src="/resources/js/js/owl.carousel.min.js"></script>
+<script src="/resources/js/js/main.js"></script>
 
 </body>
 

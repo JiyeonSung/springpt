@@ -35,6 +35,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_id = #{mem_id}
 	</select>
 	
+	<!-- 회원정보 수정 -->
+	<update id="modifyUserInfo" parameterType="MemberVO" >
+		update member_tbl
+		set mem_name=#{mem_name}, mem_nickname=#{mem_nickname}, mem_email=#{mem_email},
+			mem_tel=#{mem_tel}, mem_zipcode=#{mem_zipcode}, mem_basicadd=#{mem_basicadd}, 
+			mem_detailadd=#{mem_detailadd}, mem_accept_e=#{mem_accept_e}, mem_update=sysdate
+		where mem_id=#{mem_id}	
+	</update>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="changePw" parameterType="MemberDTO">
+		update member_tbl
+		set mem_pw = #{mem_pw}
+		where mem_id=#{mem_id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteUser" parameterType="string">
+		delete from member_tbl
+		where mem_id=#{mem_id}
+	</delete>
+	
 	<!-- 로그인 시간 업데이트 -->
 	<update id="loginUpdate" parameterType="string">
 		update member_tbl

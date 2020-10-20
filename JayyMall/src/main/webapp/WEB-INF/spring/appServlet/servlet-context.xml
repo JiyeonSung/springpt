@@ -17,22 +17,24 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!--  클라이언트에서 사용가능하기위한 경로설정 -->
+	<!-- 
 	<resources mapping="/bower_components/**" location="/resources/bower_components/" />
 	<resources mapping="/dist/**" location="/resources/dist/" />
 	<resources mapping="/plugins/**" location="/resources/plugins/" />
-	
-	<resources mapping="/css/**" location="/WEB-INF/views/css/" />
-	<resources mapping="/vendor/**" location="/WEB-INF/views/vendor/" />
-	
-	<resources mapping="/js/**" location="/WEB-INF/views/js/" />
+	-->
+	 
+	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/fonts/**" location="/resources/fonts/" />
+	<resources mapping="/img/**" location="/resources/img/" />
+	<resources mapping="/js/**" location="/resources/js/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	
+		
+
 	<context:component-scan base-package="com.jayymall.controller" />
 	<context:component-scan base-package="com.jayymall.dao" />
 	<context:component-scan base-package="com.jayymall.domain" />

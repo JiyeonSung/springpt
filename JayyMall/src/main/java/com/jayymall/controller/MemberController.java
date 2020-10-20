@@ -126,7 +126,7 @@ public class MemberController {
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String joinPOST(MemberVO vo, RedirectAttributes rttr) throws Exception {
 		
-		// 비밀번호 암호화.   "1234" -> 다른 문자로 비번으로 생성
+		// 비밀번호 암호화.  "1234" -> 다른 문자로 비번 생성
 		vo.setMem_pw(crptPassEnc.encode(vo.getMem_pw()));
 		
 		service.join(vo);
@@ -145,10 +145,10 @@ public class MemberController {
 		ResponseEntity<String> entity = null;
 		try {
 			int count = service.checkIdDuplicate(mem_id);
-			// count 가 0이면 아이디 사용가능, 1d 이면 사용 불가능.
+			// count가 0이면 아이디 사용 가능, 1이면 사용 불가능
 
 			if(count != 0) {
-				// 아이디가 존재해서 사용이 불가능.
+				// 아이디가 존재해서 사용이 불가능
 				entity = new ResponseEntity<String>("FAIL", HttpStatus.OK);
 			} else {
 				// 사용가능한 아이디
@@ -157,7 +157,7 @@ public class MemberController {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); // 요청이 문제가 있다.
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);  // 요청이 문제가 있다
 		}
 		
 		return entity;
@@ -266,13 +266,9 @@ public class MemberController {
 		return entity;
 	}
 	
-	
 	/* 회원 정보 수정(POST) */
 	@RequestMapping(value="modify", method=RequestMethod.POST)
 	public String modifyPOST(MemberVO vo, RedirectAttributes rttr, HttpSession session) throws Exception {
-
-
-
 
 		MemberDTO dto = new MemberDTO();
 		dto.setMem_id(vo.getMem_id());

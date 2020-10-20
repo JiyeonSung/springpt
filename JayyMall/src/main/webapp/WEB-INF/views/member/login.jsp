@@ -1,120 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
+
+<!-- Offcanvas Menu Begin -->
+<%@ include file="/WEB-INF/views/common/offcanvas.jsp" %>
+<!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!-- Header Section End -->
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<title>JayyMall | Template - MEMBER LOGIN</title>
+<script type="text/javascript" src="/resources/js/member/login.js"></script>
+<script>
+	if("${msg}"=="LOGIN_FAIL"){	
+		alert("로그인에 실패하였습니다.\n아이디와 비밀번호를 다시 확인해주세요.");
+	}
+</script>
 
-  <title>Shop Homepage - Start Bootstrap Template</title>
 
-  <!-- Bootstrap core CSS -->
-  <!-- Custom styles for this template -->
-<%@ include file="/WEB-INF/views/common/bootcss.jsp" %>
-  
-  <style>
-.login-form {
-    width: 340px;
-    margin: 50px auto;
-  	font-size: 15px;
-}
-.login-form form {
-    margin-bottom: 15px;
-    background: #f7f7f7;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px;
-}
-.login-form h2 {
-    margin: 0 0 15px;
-}
-.form-control, .btn {
-    min-height: 38px;
-    border-radius: 2px;
-}
-.btn {        
-    font-size: 15px;
-    font-weight: bold;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JayyMall | Template</title>
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <%@ include file="/WEB-INF/views/common/bootcss.jsp" %>
+    
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <%@ include file="/WEB-INF/views/common/top.jsp" %>
-
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-	  <!-- 카테고리 메뉴 -->
-      <div class="col-lg-3">
-
-        <%@ include file="/WEB-INF/views/common/category.jsp" %>
-
-      </div>
-      <!-- /.col-lg-3 -->
-
-      <div class="col-lg-9">
-		<!-- main-carousel begin  -->
-        <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
-		<!-- main-carousel end -->
-		
-		
-        <div class="row">
-		
-		<!-- 로그인 -->
-          
-           <div class="col">
-    
-    		<div class="login-form">
-			    <form action="/examples/actions/confirmation.php" method="post">
-			        <h2 class="text-center">Log in</h2>       
-			        <div class="form-group">
-			            <input type="text" class="form-control" placeholder="Username" required="required">
-			        </div>
-			        <div class="form-group">
-			            <input type="password" class="form-control" placeholder="Password" required="required">
-			        </div>
-			        <div class="form-group">
-			            <button type="submit" class="btn btn-primary btn-block">Log in</button>
-			        </div>
-			        <div class="clearfix">
-			            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-			            <a href="#" class="float-right">Forgot Password?</a>
-			        </div>        
-			    </form>
-			    <p class="text-center"><a href="#">Create an Account</a></p>
-</div>
-    
-   		   </div>
-          
-		<!-- 로그인 -->
-        </div>
-        <!-- /.row -->
-
-      </div>
-      <!-- /.col-lg-9 -->
-
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+    <!-- Login Section Begin -->
+    <!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				
+				<ol class="breadcrumb">
+					<li><a href="/"><i class="fa fa-dashboard"></i>Main</a></li>
+					<li>Login</li>
+				</ol>
+			</section>
 
-  <!-- Footer -->
-  <%@ include file="/WEB-INF/views/common/bottom.jsp" %>
+			<%-- Main content 로그인 UI --%>
+			<section class="content container-fluid">
+				<div class="container" style="width: 450px; height:620px; background-color: white; margin-top:30px;">
+					<form id="loginForm" class="form-signin" action="/member/loginPost" method="post" style="padding:50px 30px;">
+						<h2 class="form-signin-heading">Please sign in</h2>
+						<br><br>
+						<label for="inputId" class="sr-only">Id</label> 
+						<input type="text" id="mem_id" name="mem_id" class="form-control" style="margin-bottom: 15px"
+							placeholder="Id" required autofocus> 
+						<label for="inputPassword" class="sr-only">Password</label> 
+						<input type="password" id="mem_pw" name="mem_pw" class="form-control"
+							placeholder="Password" required>
+						<br><br>
+						<div class="checkbox">
+							<label> <input type="checkbox" name="useCookie" />
+								Remember me
+							</label>
+						</div>
+						<button id="btn_login" class="site-btn" type="submit"  >
+							Sign in
+						</button>
+					</form>
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+    <!-- Login Section End -->
 
-  <!-- Bootstrap core JavaScript -->
-  <%@ include file="/WEB-INF/views/common/bootjs.jsp" %>
+    <!-- Footer Section Begin -->
+    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <%@ include file="/WEB-INF/views/common/search.jsp" %>
+    <!-- Search End -->
+
+<!-- Js Plugins -->
+<script src="/resources/js/js/jquery-3.3.1.min.js"></script>
+<script src="/resources/js/js/bootstrap.min.js"></script>
+<script src="/resources/js/js/jquery.nice-select.min.js"></script>
+<script src="/resources/js/js/jquery.nicescroll.min.js"></script>
+<script src="/resources/js/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/js/js/jquery.countdown.min.js"></script>
+<script src="/resources/js/js/jquery.slicknav.js"></script>
+<script src="/resources/js/js/mixitup.min.js"></script>
+<script src="/resources/js/js/owl.carousel.min.js"></script>
+<script src="/resources/js/js/main.js"></script>
 
 </body>
 
 </html>
-

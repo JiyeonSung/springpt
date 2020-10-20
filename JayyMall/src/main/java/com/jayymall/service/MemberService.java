@@ -33,4 +33,5 @@ public interface MemberService {
 	
 	// 쿠키에 저장된 세션값으로 로그인 정보 가져옴
 	public MemberVO checkUserSession(String value) throws Exception;
+
 }

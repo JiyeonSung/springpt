@@ -26,12 +26,14 @@ public class MemberVO {
 	private String 	mem_detailadd;
 	private String	mem_nickname; 
 	private String 	mem_accept_e;
+	private int		mem_point;
 	private Date	mem_joindate;        
 	private Date	mem_update;        
 	private Date	mem_lastlogin;     
 	private String	mem_authcode;
 	private String  mem_session_key;
 	private Date	mem_session_limit;
+	
 	
 	public String getMem_id() {
 		return mem_id;
@@ -93,6 +95,12 @@ public class MemberVO {
 	public void setMem_accept_e(String mem_accept_e) {
 		this.mem_accept_e = mem_accept_e;
 	}
+	public int getMem_point() {
+		return mem_point;
+	}
+	public void setMem_point(int mem_point) {
+		this.mem_point = mem_point;
+	}
 	public Date getMem_joindate() {
 		return mem_joindate;
 	}
@@ -135,11 +143,9 @@ public class MemberVO {
 		return "MemberVO [mem_id=" + mem_id + ", mem_name=" + mem_name + ", mem_pw=" + mem_pw + ", mem_email="
 				+ mem_email + ", mem_tel=" + mem_tel + ", mem_zipcode=" + mem_zipcode + ", mem_basicadd=" + mem_basicadd
 				+ ", mem_detailadd=" + mem_detailadd + ", mem_nickname=" + mem_nickname + ", mem_accept_e="
-				+ mem_accept_e + ", mem_joindate=" + mem_joindate + ", mem_update="
+				+ mem_accept_e + ", mem_point=" + mem_point + ", mem_joindate=" + mem_joindate + ", mem_update="
 				+ mem_update + ", mem_lastlogin=" + mem_lastlogin + ", mem_authcode=" + mem_authcode
 				+ ", mem_session_key=" + mem_session_key + ", mem_session_limit=" + mem_session_limit + "]";
 	}
-	
-	
-	
+		
 }
