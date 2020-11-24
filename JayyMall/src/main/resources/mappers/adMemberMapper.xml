@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jayymall.mappers.AdMemberMapper">
+	
+	<!-- 검색 조건 : 공통으로 사용하는  구문 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<!-- 회원 ID -->
+			<if test="searchType == 'id'.toString()"> 
+				where mem_id like '%' || #{keyword} || '%'
+			</if>
+			<!-- 회원 이름 -->
+			<if test="searchType == 'name'.toString()"> 
+				where mem_name like '%' || #{keyword} || '%'
+			</if>
+			<!-- 회원 닉네임 -->
+			<if test="searchType == 'nickname'.toString()"> 
+				where mem_nickname like '%' || #{keyword} || '%'
+			</if>
+			<!-- 회원 수신여부 -->
+			<if test="searchType == 'accept'.toString()"> 
+				where mem_accept_e like '%' || #{keyword} || '%'
+			</if>
+			<!-- ID + 이름 -->
+			<if test="searchType == 'id_name'.toString()"> 
+				where (mem_id like '%' || #{keyword} || '%')
+				or (mem_name like '%' || #{keyword} || '%')
+			</if>
+			<!-- ID + 닉네임 -->
+			<if test="searchType == 'id_nickname'.toString()"> 
+				where (mem_id like '%' || #{keyword} || '%')
+				or (mem_nickname like '%' || #{keyword} || '%')
+			</if>
+			<!-- ID + 이름 + 닉네임 -->
+			<if test="searchType == 'all'.toString()"> 
+				where (mem_id like '%' || #{keyword} || '%')
+				or (mem_name like '%' || #{keyword} || '%')
+				or (mem_nickname like '%' || #{keyword} || '%')
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 회원 리스트 (검색조건 포함) -->
+	<select id="searchListMember" parameterType="SearchCriteria" resultType="MemberVO">
+		select mem_id, mem_name, mem_pw, mem_email, mem_accept_e, mem_tel, mem_nickname, mem_joindate, mem_lastlogin
+		from (select mem_id, mem_name, mem_pw, mem_email, mem_accept_e, mem_tel, mem_zipcode, mem_basicadd, mem_detailadd,
+					mem_nickname, mem_point, mem_joindate, mem_update, mem_lastlogin, mem_authcode, mem_session_key, mem_seesion_limit,
+			row_number() over (order by mem_id desc) p_seq from member_tbl
+			<include refid="search" /> )
+		where p_seq between #{rowStart} and #{rowEnd}
+	</select>
+	
+	<!-- 회원 수 (검색조건 포함) -->
+	<select id="searchListCount" parameterType="SearchCriteria" resultType="int">
+		<![CDATA[
+			select count(mem_id)
+			from member_tbl
+		]]>
+		<include refid="search" />
+	</select>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteMember" parameterType="int">
+		delete member_tbl
+		where mem_id = #{mem_id}
+	</delete>
+
+</mapper>

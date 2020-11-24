@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jayymall.mappers.AdProductMapper">
+
+	<!-- 1차카테고리 출력  코드를 null 처리 -->
+	<select id="mainCGList" resultType="CategoryVO">
+		select cat_code, cat_parcode, cat_name
+		from category_tbl
+		where cat_parcode is null
+	</select>
+
+	<!-- 1차 카테고리에 해당하는 2차 카테고리 출력 -->
+	<select id="subCGList" parameterType="string" resultType="CategoryVO">
+		select cat_code, cat_parcode, cat_name
+		from category_tbl
+		where cat_parcode = #{cat_code}
+	</select>
+	
+	<!-- 상품 추가 -->
+	<select id="insertProduct" parameterType="ProductVO">
+		insert into product_tbl(product_num, cat_code, cat_parcode, product_name, product_price, product_discount,
+				product_company, product_detail, product_img, product_amount, product_buy, product_date, product_update)
+	    values (seq_product_num.NEXTVAL, #{cat_code}, #{cat_parcode}, #{product_name}, #{product_price}, #{product_discount},
+	    		#{product_company}, #{product_detail}, #{product_img}, #{product_amount}, #{product_buy}, sysdate, sysdate)
+	</select>
+	
+	<!-- 검색 조건 : 공통으로 사용하는  구문 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<!-- 상품명 -->
+			<if test="searchType == 'name'.toString()"> 
+				where product_name like '%' || #{keyword} || '%'
+			</if>
+			<!-- 내용 -->
+			<if test="searchType == 'detail'.toString()"> 
+				where product_detail like '%' || #{keyword} || '%'
+			</if>
+			<!-- 제조사 -->
+			<if test="searchType == 'company'.toString()"> 
+				where product_company like '%' || #{keyword} || '%'
+			</if>
+			<!-- 상품명 + 내용 -->
+			<if test="searchType == 'name_detail'.toString()"> 
+				where (product_name like '%' || #{keyword} || '%')
+				or (product_detail like '%' || #{keyword} || '%')
+			</if>
+			<!-- 상품명 + 제조사 -->
+			<if test="searchType == 'name_company'.toString()"> 
+				where (product_name like '%' || #{keyword} || '%')
+				or (product_company like '%' || #{keyword} || '%')
+			</if>
+			<!-- 상품명 + 내용 + 제조사 -->
+			<if test="searchType == 'all'.toString()"> 
+				where (product_name like '%' || #{keyword} || '%')
+				or (product_detail like '%' || #{keyword} || '%')
+				or (product_company like '%' || #{keyword} || '%')
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 상품 리스트 (검색조건 포함) -->
+	<select id="searchListProduct" parameterType="SearchCriteria" resultType="ProductVO">
+		select product_num, cat_code, cat_parcode, product_name, product_price, product_discount, product_company, 
+			product_detail, product_img, product_amount, product_buy, product_date, product_update
+		from (select product_num, cat_code, cat_parcode, product_name, product_price, product_discount, product_company, 
+			product_detail, product_img, product_amount, product_buy, product_date, product_update,
+			row_number() over (order by product_num desc) p_seq from product_tbl
+			<include refid="search" /> )
+		where p_seq between #{rowStart} and #{rowEnd}
+	</select>
+	
+	<!-- 상품 개수 (검색조건 포함) -->
+	<select id="searchListCount" parameterType="SearchCriteria" resultType="int">
+		<![CDATA[
+			select count(product_num)
+			from product_tbl
+		]]>
+		<include refid="search" />
+	</select>
+	
+	<!-- 상품 정보 읽기 -->
+	<select id="readProduct" parameterType="int" resultType="ProductVO">
+		select p.product_num, p.cat_code, p.cat_parcode, p.product_name, p.product_price, p.product_discount,
+			p.product_company, p.product_detail, p.product_img, p.product_amount, p.product_buy, p.product_date, p.product_update
+		from product_tbl p inner join category_tbl c
+		on p.cat_code= c.cat_code
+		where p.product_num = #{product_num}
+	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="editProduct" parameterType="ProductVO">
+		update product_tbl
+		set cat_code=#{cat_code}, cat_parcode=#{cat_parcode}, product_name=#{product_name}, product_price=#{product_price}, 
+			product_discount=#{product_discount}, product_company=#{product_company}, 
+			product_detail=#{product_detail}, product_img=#{product_img}, product_amount=#{product_amount}, 
+			product_buy=#{product_buy}, product_update=sysdate
+		where product_num = #{product_num}	
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteProduct" parameterType="int">
+		delete product_tbl
+		where product_num = #{product_num}
+	</delete>
+	
+	<!-- 선택한 상품 수정 -->
+	<!-- java.util.Map -->
+	<update id="editChecked" parameterType="Map">
+		update product_tbl
+		set product_amount=#{product_amount}, product_buy=#{product_buy}, product_updatep=sysdate
+		where product_num=#{product_num}
+	</update>
+		
+</mapper>

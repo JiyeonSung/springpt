@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jayymall.mappers.GoogleChartMapper">
+
+	<select id = "product_price" resultType = "GoogleChartDTO">
+        select product_name, sum(price * amount) product_pirce 
+        from cart c, product p
+        where c.product_id=p.product_id
+        group by product_name
+        order by product_name
+        
+        <!-- 상품테이블과 장바구니 테이블로부터 상품의 이름과 전체 금액을 검색 -->
+        <!-- 조건 : 장바구니 테이블의 상품 id와 상품 테이블의 상품 id가 같은 것만 (즉, 내가 장바구니에 담은 상품의 id만) -->
+        <!-- 그리고 검색한 것들을 product_name란 속성을 만들어서 내림차순으로 정렬시킴 -->
+ 
+    </select>
+	
+</mapper>
